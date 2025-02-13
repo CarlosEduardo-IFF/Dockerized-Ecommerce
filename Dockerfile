@@ -1,15 +1,19 @@
-FROM openjdk:17-jdk-alpine
+FROM maven:latest AS build
 
-# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copia o arquivo JAR para o contêiner
-COPY target/ecommerce-0.0.1-SNAPSHOT.jar /app-1.0.0.jar
+COPY . /app
 
-# Cria o diretório de imagens dentro do contêiner
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/target/ecommerce-0.0.1-SNAPSHOT.jar /app-1.0.0.jar
+
 RUN mkdir -p /app/uploads
 
-COPY src/main/resources/static/img/ /app/uploads/  
+COPY src/main/resources/static/img/ /app/uploads/
 
-# Define o ponto de entrada
 ENTRYPOINT ["java", "-jar", "/app-1.0.0.jar"]
