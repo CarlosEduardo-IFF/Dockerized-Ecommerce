@@ -5,4 +5,4 @@ O sistema oferece uma plataforma onde vendedores e clientes se unem em um ecossi
 
 # Como rodar
 
-Utilize o comando:  mvn package -DskipTests, depois docker compose up --build e em seguida acesse "http://localhost:8080/principal" para interagir com a aplicação
+Utilize o comando: docker compose up --build e em seguida acesse "http://localhost:8080/principal" para interagir com a aplicação.
