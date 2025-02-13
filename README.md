@@ -38,6 +38,8 @@ Username: postgres
 password: postgres
 ```
 
+---
+
 ## Na aplicação já estão cadastrados 3 clientes e 3 vendedores, além do administrador. Aqui estão os detalhes de cada um:
 
 Carlos(Cliente):
