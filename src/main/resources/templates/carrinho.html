@@ -1,0 +1,78 @@
+<html lang="pt-br">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+
+<body>
+    <div class="d-flex flex-column wrapper">
+        <nav th:replace="~{indexCliente :: navFrag}">
+       
+        </nav>
+
+		<main class="flex-fill">
+			<div class="container">
+				<h1>Carrinho de Compras</h1>
+				<ul class="list-group mb-3">
+				
+					<li class="list-group-item py-3" th:each="item : ${itens}">
+						<div class="row g-3">
+							<div class="col-4 col-md-3 col-lg-2">
+								
+								<a th:href="@{/exibirProduto/{id} (id=${item.produto.idProduto})}">
+									<img th:src="@{/mostrarImagem/{imagem} (imagem=${item.produto.imagem})}"
+										class="img-thumbnail">
+								</a>
+							</div>
+							<div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
+								
+								<h4><b><a th:href="@{/exibirProduto/{id} (id=${item.produto.idProduto})}"
+											class="text-decoration-none text-primary" th:text="${item.produto.nome}"></a></b>
+								</h4>
+							</div>
+							<div
+								class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
+								
+								<p>Quantidade: <span th:text="${item.quantidade}"></span></p>
+								
+								<td colspan="2" class="d-flex justify-content-between">
+									<form action="/removerItem/{idCarrinho}/{idItem}" method="post"
+										th:action="@{/removerItem/{idCarrinho}/{idItem}(idCarrinho=${carrinho.idCarrinho}, idItem=${item.id})}">
+										<button type="submit" class="btn btn-danger">Remover</button>
+								
+									</form>
+									<a th:href="@{/editarItem/{id}(id=${item.id})}" class="btn btn-primary">Editar</a>
+								</td>
+								<p>Valor Item: R$ <span th:text="${item.produto.preco * item.quantidade}"></span></p>
+								
+								
+							</div>
+						</div>
+					</li>
+					
+					 </li>
+                    <li class="list-group-item py-3">
+                        <div class="text-end">
+                            <h4 class="text-dark mb-3" >
+                                Valor Total: R$ <span th:text="${valorTotal}"></span>
+                            </h4>
+                            <a href="/principalCliente" class="btn btn-outline-success btn-lg">
+                                Continuar Comprando                            
+                            </a>
+                            <a th:href="@{/realizarPedido/{id}(id=${carrinho.idCarrinho})}" class="btn btn-primary btn-lg ms-2 mt-xs-3">Fazer Pedido</a>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</main>
+
+        <footer th:replace="~{index :: footerFrag}">
+            
+        </footer>
+    </div>
+   <script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<html lang="pt-br">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+
+<body>
+    <div class="d-flex flex-column wrapper">
+        <nav th:replace="~{indexCliente :: navFrag}">
+        </nav>
+
+        <main class="flex-fill">
+            <div class="container">
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6">
+                        <img th:src="@{/mostrarImagem/{imagem} (imagem=${produto.imagem})}" class="img-thumbnail" id="imgProduto">
+                        
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h1 th:text="${produto.nome}"></h1>
+                        <p th:text="${produto.descricao}">
+                            
+                        </p>
+                        <p>
+                            <button class="btn btn-lg btn-primary mb-3 mb-xl-0 me-2">
+                                Adicionar ao Carrinho
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+       
+    </div>
+    <footer th:replace="~{index :: footerFrag}">
+		</footer>
+    <script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

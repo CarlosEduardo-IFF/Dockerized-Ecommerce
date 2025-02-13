@@ -1,0 +1,151 @@
+<html lang="pt-br">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+
+<body style="min-width:372px;">
+	<div class="d-flex flex-column wrapper">
+		<nav th:replace="~{indexAdmin :: navFragAdmin}">
+
+		</nav>
+
+		<main class="flex-fill">
+			<div class="container">
+				<h1>Informe os dados do Vendedor</h1>
+				<hr>
+				<form method="post" action="/criarVendedor2" class="mt-3">
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<fieldset class="row gx-3">
+								
+								<legend>Dados</legend>
+								<div class="form-floating mb-3">
+									<input class="form-control" type="text" id="txtNomeVendedor" name="nomeUsuario"
+										placeholder=" " autofocus />
+									<label for="txtNomeVendedor">Nome</label>
+								</div>
+								<div class="form-floating mb-3 col-md-6 col-xl-4">
+									<input class="form-control" type="text" id="txtCNPJVendedor" name="cnpj"
+										placeholder=" " />
+									<label for="txtCNPJVendedor">CNPJ</label>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>E-mail</legend>
+								<div class="form-floating mb-3 col-md-8">
+									<input class="form-control" type="email" id="txtEmailVendedor" name="email"
+										placeholder=" " />
+									<label for="txtEmailVendedor">E-mail</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<fieldset class="row gx-3">
+								<legend>Senha de Acesso</legend>
+								<div class="form-floating mb-3 col-lg-6">
+									<input class="form-control" type="password" id="txtSenhaVendedor" name="senha"
+										placeholder=" " />
+									<label for="txtSenhaVendedor">Senha</label>
+								</div>
+								
+							</fieldset>
+							<fieldset>
+								<legend>Descrição</legend>
+								<div class="form-floating mb-3 col-md-12">
+									<textarea class="form-control" id="textboxVendedor" name="descricao" placeholder=" "
+										style="height: 150px;"></textarea>
+									<label for="textboxVendedor">Descrição</label>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					<hr />
+					<div class="mb-3 text-left">
+						<a class="btn btn-lg btn-light btn-outline-primary" href="/principalAdmin">Cancelar</a>
+						<input type="submit" value="Cadastrar Vendedor" class="btn btn-lg btn-primary" />
+					</div>
+				</form>
+
+				<hr>
+
+				<div class="accordion" id="divTabVendedores">
+					<div class="accordion-item" th:each="vendedor : ${vendedores}">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								th:data-bs-target="'#tabVendedor' + ${vendedor.id}">
+								<b>Vendedor</b>
+								<span class="mx-1"> - <span th:text="${vendedor.id}"></span></span>
+							</button>
+						</h2>
+						<div th:id="'tabVendedor' + ${vendedor.id}" class="accordion-collapse collapse"
+							data-bs-parent="#divTabVendedores">
+							<div class="accordion-body">
+								<table class="table">
+									<tr>
+										<th><strong>Id da conta</strong></th>
+										<td><span th:text="${vendedor.id}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>Nome</strong></th>
+										<td><span th:text="${vendedor.nomeUsuario}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>CNPJ</strong></th>
+										<td><span th:text="${vendedor.cnpj}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>Email</strong></th>
+										<td><span th:text="${vendedor.email}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>Senha</strong></th>
+										<td><span th:text="${vendedor.senha}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>Descrição</strong></th>
+										<td><span th:text="${vendedor.descricao}"></span></td>
+									</tr>
+									<tr>
+										<th><strong>Produtos</strong></th>
+										<td>
+											<ul>
+												<li th:each="produto : ${vendedor.produtos}">
+													<span th:text="${produto.nome}"></span> - <span
+														th:text="${produto.descricao}"></span>
+												</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="d-flex justify-content-between">
+											<form action="/removerVendedor/{id}" method="post"
+												th:action="@{/removerVendedor/{id}(id=${vendedor.id})}">
+												<button type="submit" class="btn btn-danger">Remover</button>
+											</form>
+											<a th:href="@{/editarVendedor/{id}(id=${vendedor.id})}"
+												class="btn btn-primary">Editar</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</main>
+
+		
+	</div>
+	<footer th:replace="~{index :: footerFrag}">
+
+	</footer>
+
+	<script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

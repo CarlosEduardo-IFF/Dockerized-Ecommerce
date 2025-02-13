@@ -1,0 +1,55 @@
+#version: '3.9'
+
+services:
+  ecommerce_app:
+    container_name: ecommerce_app
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - ecommerce_imagens:/app/uploads  
+    environment:
+      - DIRETORIO_IMAGENS=/app/uploads  
+      - DATABASE_URL=jdbc:postgresql://ecommerce_db:5432/postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      - ecommerce_db
+    command: ["/wait-for-it.sh", "ecommerce_db:5432", "--timeout=30", "--strict", "java", "-jar", "app-1.0.0.jar"]
+    networks:
+      - aws-network
+
+  ecommerce_db:
+    container_name: ecommerce_db
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - aws-network
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com  
+      PGADMIN_DEFAULT_PASSWORD: admin          
+    ports:
+      - "8081:80"  
+    depends_on:
+      - ecommerce_db
+    networks:
+      - aws-network
+
+networks:
+  aws-network:
+    driver: bridge
+    
+volumes:
+  pgdata: {}
+  ecommerce_imagens: {}

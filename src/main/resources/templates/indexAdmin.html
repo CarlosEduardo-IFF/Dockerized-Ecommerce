@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+<body>
+	<div class="d-flex flex-column wrapper">
+
+		<nav th:fragment="navFragAdmin"
+			class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom shadow-sm mb-3">
+			<div class="container">
+				<a class="navbar-brand" href="/principal"><b>Ecommerce</b></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target=".navbar-collapse">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav flex-grow-1">
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/principalAdmin">Principal</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/crudCliente">Clientes</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/crudVendedor">Vendedores</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/crudCategoria">Categorias</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/crudProduto">Produtos</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link text-white" href="/crudPedido">Pedidos</a>
+						</li>
+					</ul>
+					<div class="align-self-end">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a href="/cliente" class="nav-link text-white">Logado como <b
+										th:text="${session.nomeAdmin}"></b></a>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+
+	</div>
+	<footer th:replace="~{index :: footerFrag}">
+	</footer>
+	<script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

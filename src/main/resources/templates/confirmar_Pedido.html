@@ -1,0 +1,43 @@
+<html lang="pt-br">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+<body>
+    <div class="d-flex flex-column wrapper">
+        <nav th:replace="~{indexCliente :: navFrag}">
+       
+        </nav>
+ 
+        <main class="flex-fill">
+            <div class="container">
+                <h1>Pedido Realizado com Sucesso!</h1>
+                <hr>
+                <p>
+                    Id do pedido:  <b th:text="${idPedido}"></b>,
+                </p>
+                <p>
+                    Obrigado por comprar em nossa loja virtual.<br>
+                    Desde já, agradecemos pela confiança em nossos serviços.
+                </p>
+                <p>
+                    Cordialmente,<br>
+                    Central de Relacionamento Ecommerce.
+                </p>
+                <p>
+                    <a href="/principalCliente" class="btn btn-lg btn-primary">Voltar à Página Principal</a>
+                </p>
+            </div>
+        </main>
+
+       
+    </div>
+    <footer th:replace="~{index :: footerFrag}">
+
+	</footer>
+    <script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

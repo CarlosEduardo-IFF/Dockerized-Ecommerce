@@ -1,0 +1,50 @@
+<html lang="pt-br">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{index :: headFrag}">
+</head>
+
+<body>
+    <div class="d-flex flex-column wrapper">
+        <nav th:replace="~{index :: navFrag}">
+       
+        </nav>
+ 
+        <main class="flex-fill">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <form method="post" action="/fazerLogin" class="col-sm-10 col-md-8 col-lg-6">
+                        <h1>Identifique-se</h1>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" id="txtEmail" class="form-control" name="email" placeholder=" " autofocus>
+                            <label for="txtEmail">E-mail</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="password" id="txtSenha" class="form-control" name="senha" placeholder=" ">
+                            <label for="txtSenha">Senha</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-lg btn-primary">Entrar</button>
+
+                        <p class="mt-3">
+                            Ainda não é cadastrado? <a href="/cadastroCliente" class="text-decoration-none text-primary">Clique aqui</a> para se cadastrar.
+                        </p>
+
+                
+                    </form>
+                </div>
+            </div>
+        </main>
+
+      
+    </div>
+    <footer th:replace="~{index :: footerFrag}">
+
+	</footer>
+    <script th:src="@{~/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

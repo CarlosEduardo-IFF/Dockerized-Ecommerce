@@ -1,0 +1,1 @@
+INSERT INTO tb_conta_Admin(col_nome, col_email, col_senha, col_cpf) VALUES ('Admin', 'admin@gmail.com', 'admin1234', '14758269356');
