@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.iff.ecommerce.model.Produto;
 import br.edu.iff.ecommerce.service.CategoriaService;
+import br.edu.iff.ecommerce.service.AdministradorService;
 import br.edu.iff.ecommerce.service.ClienteService;
 import br.edu.iff.ecommerce.service.ContaVendedorService;
 import br.edu.iff.ecommerce.service.ProdutoService;
@@ -20,6 +21,9 @@ import br.edu.iff.ecommerce.service.StatusService;
 
 @Controller
 public class MainControllerView {
+
+	@Autowired
+	    private AdministradorService administrador;
 	
 	 @Autowired
 	    private StatusService statusService;
@@ -48,6 +52,8 @@ public class MainControllerView {
 			statusService.criarStatus("Em preparação");
 			statusService.criarStatus("Enviado");
 			statusService.criarStatus("Entregue");
+
+			administrador.criarAdministrador("admin@gmail.com", "admin1234", "Admin", "14758269356");
 			
 			//Cadastro de cliente
 			LocalDate data1 = LocalDate.of(1990, 5, 15);
