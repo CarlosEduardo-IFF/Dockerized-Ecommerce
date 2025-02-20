@@ -15,7 +15,9 @@ services:
       - DATABASE_PASSWORD=postgres
     depends_on:
       - ecommerce_db
-    command: ["/wait-for-it.sh", "ecommerce_db:5432", "--timeout=30", "--strict", "java", "-jar", "app-1.0.0.jar"]
+    command: >
+      sh -c "until pg_isready -h ecommerce_db -p 5432; do sleep 2; done &&
+      java -jar /app-1.0.0.jar"
     networks:
       - aws-network
 
