@@ -17,4 +17,12 @@ public class AdministradorService {
 		 return administradorRepository.findByEmail(email);
 	}
 
+	public Administrador criarAdministrador(String email, String senha, String nomeUsuario, String cpf){
+
+		Administrador admin = new Administrador(email, senha, nomeUsuario, cpf);
+
+		return administradorRepository.save(admin);
+
+	}
+
 }
