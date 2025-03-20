@@ -10,9 +10,9 @@ services:
       - ecommerce_imagens:/app/uploads  
     environment:
       - DIRETORIO_IMAGENS=/app/uploads  
-      - DATABASE_URL=jdbc:postgresql://ecommerce_db:5432/postgres
+      - DATABASE_URL=jdbc:postgresql://aws-db.cs1vdo3kgx17.us-east-1.rds.amazonaws.com:5432/postgres
       - DATABASE_USERNAME=postgres
-      - DATABASE_PASSWORD=postgres
+      - DATABASE_PASSWORD=postgres*db
     depends_on:
       - ecommerce_db
     command: >
