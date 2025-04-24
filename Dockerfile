@@ -16,4 +16,6 @@ RUN mkdir -p /app/uploads
 
 COPY src/main/resources/static/img/ /app/uploads/
 
+EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "/app-1.0.0.jar"]
